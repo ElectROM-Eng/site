@@ -10,11 +10,9 @@ export default function LeadMagnet() {
 
   function calcularEconomia(e) {
     e.preventDefault();
-    // Simulação simples: 20% de economia
-    if (gasto && segmento && estado) {
-      const economia = (parseFloat(gasto) * 0.2).toFixed(2);
-      setResultado(`Você pode economizar até R$ ${economia} por ano!`);
-    }
+    // Exemplo de cálculo (ajuste conforme sua lógica real)
+    const economia = (Number(gasto) + Number(segmento) + Number(estado)) * 0.12;
+    setResultado(economia);
   }
 
   return (
@@ -62,11 +60,15 @@ export default function LeadMagnet() {
           Calcular
         </motion.button>
       </form>
-      {resultado && (
-        <div className="text-lg text-brand-petrol font-semibold mb-2">{resultado}</div>
+      {resultado !== null && (
+        <div className="text-lg text-brand-petrol font-semibold mb-2">
+          Você pode economizar até{" "}
+          <span className="text-2xl">{resultado.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}</span>{" "}
+          por ano!
+        </div>
       )}
       <div className="text-center">
-        <span className="text-gray-700">Receba um diagnóstico detalhado e converse com um especialista.</span>
+        <span className="text-white/80">Receba um diagnóstico detalhado e converse com um especialista.</span>
         <a href="#contato" className="ml-2 underline text-brand-blue font-semibold hover:text-brand-blue/80 transition">Agendar call</a>
       </div>
     </motion.section>

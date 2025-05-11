@@ -1,8 +1,17 @@
 'use client';
 
 import { useState } from 'react';
-import { FaIndustry, FaStore, FaHome, FaHospital, FaSchool, FaBuilding } from 'react-icons/fa';
-import { FaArrowRight, FaChartLine, FaLeaf, FaMoneyBillWave } from 'react-icons/fa';
+import { motion } from 'framer-motion';
+import { FaIndustry, FaStore, FaHome, FaHospital, FaSchool, FaBuilding, FaArrowRight, FaChartLine, FaLeaf, FaMoneyBillWave } from 'react-icons/fa';
+
+// CSS para textura noise
+const noiseStyle = {
+  backgroundImage: 'url("data:image/svg+xml,%3Csvg width=\'100%25\' height=\'100%25\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'n\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.8\' numOctaves=\'4\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23n)\' opacity=\'0.07\'/%3E%3C/svg%3E")',
+  pointerEvents: 'none' as const,
+  position: 'absolute' as const,
+  inset: 0,
+  zIndex: 0,
+};
 
 const CasesPage = () => {
   const [activeSegment, setActiveSegment] = useState<string>('todos');
@@ -92,107 +101,162 @@ const CasesPage = () => {
     ? cases 
     : cases.filter(case_ => case_.segmento === activeSegment);
 
-  return (
-    <div className="max-w-7xl mx-auto px-4 py-12">
-      {/* Hero Section */}
-      <div className="text-center mb-16">
-        <h1 className="text-4xl font-bold text-gray-900 mb-4">Cases de Sucesso</h1>
-        <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-          Conheça alguns dos nossos projetos e os resultados alcançados para nossos clientes
-        </p>
-      </div>
+  // Animação Framer Motion
+  const container = {
+    hidden: {},
+    show: {
+      transition: {
+        staggerChildren: 0.15
+      }
+    }
+  };
+  const item = {
+    hidden: { opacity: 0, y: 40 },
+    show: { opacity: 1, y: 0 }
+  };
 
-      {/* Filtro de Segmentos */}
-      <div className="mb-12">
-        <div className="flex flex-wrap justify-center gap-4">
+  return (
+    <div className="relative min-h-screen w-full bg-[#0C1713] pb-16 overflow-hidden">
+      {/* Gradiente radial centralizado */}
+      <div className="absolute inset-0 z-0 pointer-events-none" aria-hidden="true">
+        <div className="absolute inset-0 bg-[#0C1713]" />
+        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[120vw] h-[120vw] md:w-[80vw] md:h-[80vw] rounded-full bg-[#7AA2E4] opacity-10 blur-3xl" />
+        <div style={noiseStyle} />
+      </div>
+      <section className="relative z-10 max-w-6xl mx-auto px-4 pt-16">
+        <header className="text-center mb-14">
+          <h1 className="text-3xl md:text-4xl font-extrabold text-white mb-4 leading-tight drop-shadow-lg">
+            Cases de Sucesso
+          </h1>
+          <p className="text-lg md:text-xl text-[#7AA2E4] font-medium max-w-2xl mx-auto">
+            Conheça nossos projetos e o impacto real para cada cliente
+          </p>
+        </header>
+
+        {/* Filtro de Segmentos */}
+        <motion.div 
+          className="flex flex-wrap justify-center gap-3 mb-12"
+          initial="hidden"
+          animate="show"
+          variants={container}
+        >
           {segmentos.map((segmento) => (
-            <button
+            <motion.button
               key={segmento.id}
               onClick={() => setActiveSegment(segmento.id)}
-              className={`flex items-center space-x-2 px-4 py-2 rounded-full transition-colors ${
-                activeSegment === segmento.id
-                  ? 'bg-blue-600 text-white'
-                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-              }`}
+              variants={item}
+              className={`flex items-center gap-2 px-5 py-2 rounded-full font-semibold border-2 transition-all duration-200 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-[#7AA2E4] focus:ring-offset-2
+                ${activeSegment === segmento.id
+                  ? 'bg-[#7AA2E4] border-[#7AA2E4] text-white shadow-md scale-105'
+                  : 'bg-white border-white text-[#0C1713] hover:bg-[#eaf1fa] hover:border-[#7AA2E4]'}
+              `}
             >
               {segmento.icone}
               <span>{segmento.nome}</span>
-            </button>
+            </motion.button>
           ))}
-        </div>
-      </div>
+        </motion.div>
 
-      {/* Grid de Cases */}
-      <div className="space-y-12">
-        {casesFiltrados.map((case_) => (
-          <div key={case_.id} className="bg-white rounded-lg shadow-lg overflow-hidden">
-            <div className="grid grid-cols-1 lg:grid-cols-2">
+        {/* Grid de Cases */}
+        <motion.div
+          className="flex flex-col gap-12"
+          initial="hidden"
+          animate="show"
+          variants={container}
+        >
+          {casesFiltrados.map((case_, idx) => (
+            <motion.div
+              key={case_.id}
+              variants={item}
+              whileHover={{ scale: 1.015, boxShadow: '0 8px 32px 0 rgba(122,162,228,0.10)' }}
+              className="bg-white/60 backdrop-blur-md rounded-2xl shadow-2xl overflow-hidden flex flex-col lg:flex-row border border-white/30"
+            >
               {/* Imagem */}
-              <div className="relative h-64 lg:h-full">
+              <div className="relative lg:w-1/2 h-64 lg:h-auto">
                 <img
                   src={case_.imagem}
                   alt={case_.titulo}
-                  className="object-cover w-full h-full"
+                  className="object-cover w-full h-full transition-transform duration-300 hover:scale-105"
+                  loading="lazy"
                 />
+                <span className="absolute top-4 left-4 bg-[#7AA2E4] text-white text-xs font-bold px-3 py-1 rounded-full shadow-md uppercase tracking-wider">
+                  {segmentos.find(s => s.id === case_.segmento)?.nome}
+                </span>
               </div>
 
               {/* Conteúdo */}
-              <div className="p-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">{case_.titulo}</h3>
-                <p className="text-gray-600 mb-6">{case_.descricao}</p>
+              <div className="flex-1 p-8 flex flex-col justify-between">
+                <div>
+                  <h3 className="text-2xl font-bold text-[#0C1713] mb-2 leading-tight">{case_.titulo}</h3>
+                  <p className="text-[#0C1713]/80 mb-6 text-base">{case_.descricao}</p>
 
-                {/* Comparação Antes/Depois */}
-                <div className="grid grid-cols-2 gap-6 mb-8">
-                  <div className="bg-gray-50 p-4 rounded-lg">
-                    <h4 className="font-semibold text-gray-900 mb-3">Antes</h4>
-                    <ul className="space-y-2 text-gray-600">
-                      <li>Consumo: {case_.antes.consumo}</li>
-                      <li>Custo: {case_.antes.custo}</li>
-                      <li>Impacto: {case_.antes.impacto}</li>
-                    </ul>
+                  {/* Comparação Antes/Depois */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                    <div className="bg-[#eaf1fa] p-5 rounded-xl flex flex-col gap-2 shadow-sm">
+                      <span className="font-semibold text-[#0C1713] mb-1 flex items-center gap-2"><FaLeaf className="text-[#7AA2E4]" /> Antes</span>
+                      <ul className="space-y-1 text-[#0C1713]/80 text-sm">
+                        <li><b>Consumo:</b> {case_.antes.consumo}</li>
+                        <li><b>Custo:</b> {case_.antes.custo}</li>
+                        <li><b>Impacto:</b> {case_.antes.impacto}</li>
+                      </ul>
+                    </div>
+                    <div className="bg-[#7AA2E4]/10 p-5 rounded-xl flex flex-col gap-2 shadow-sm">
+                      <span className="font-semibold text-[#0C1713] mb-1 flex items-center gap-2"><FaChartLine className="text-[#7AA2E4]" /> Depois</span>
+                      <ul className="space-y-1 text-[#0C1713]/80 text-sm">
+                        <li><b>Consumo:</b> {case_.depois.consumo}</li>
+                        <li><b>Custo:</b> {case_.depois.custo}</li>
+                        <li><b>Impacto:</b> {case_.depois.impacto}</li>
+                      </ul>
+                    </div>
                   </div>
-                  <div className="bg-blue-50 p-4 rounded-lg">
-                    <h4 className="font-semibold text-gray-900 mb-3">Depois</h4>
-                    <ul className="space-y-2 text-gray-600">
-                      <li>Consumo: {case_.depois.consumo}</li>
-                      <li>Custo: {case_.depois.custo}</li>
-                      <li>Impacto: {case_.depois.impacto}</li>
-                    </ul>
+
+                  {/* Resultados */}
+                  <div>
+                    <h4 className="font-semibold text-[#0C1713] mb-3">Resultados</h4>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      {case_.resultados.map((resultado, index) => (
+                        <div key={index} className="flex items-center gap-2 text-[#0C1713]/90 bg-[#eaf1fa] rounded-lg px-3 py-2 font-medium shadow-sm">
+                          <FaArrowRight className="text-[#7AA2E4] flex-shrink-0" />
+                          <span>{resultado}</span>
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 </div>
-
-                {/* Resultados */}
-                <div>
-                  <h4 className="font-semibold text-gray-900 mb-3">Resultados</h4>
-                  <div className="grid grid-cols-2 gap-4">
-                    {case_.resultados.map((resultado, index) => (
-                      <div key={index} className="flex items-center space-x-2 text-gray-600">
-                        <FaArrowRight className="text-blue-600 flex-shrink-0" />
-                        <span>{resultado}</span>
-                      </div>
-                    ))}
-                  </div>
+                <div className="mt-8 flex justify-end">
+                  <a
+                    href="/contato"
+                    className="inline-flex items-center gap-2 px-6 py-3 bg-[#7AA2E4] text-white font-bold rounded-lg shadow-md hover:bg-[#5e8fd1] transition-colors text-base"
+                  >
+                    Solicitar Diagnóstico
+                    <FaArrowRight />
+                  </a>
                 </div>
               </div>
-            </div>
-          </div>
-        ))}
-      </div>
+            </motion.div>
+          ))}
+        </motion.div>
 
-      {/* CTA Section */}
-      <div className="mt-16 bg-blue-600 rounded-lg p-8 text-center text-white">
-        <h2 className="text-2xl font-bold mb-4">Quer resultados similares?</h2>
-        <p className="mb-6 max-w-2xl mx-auto">
-          Nossa equipe está pronta para desenvolver uma solução personalizada para o seu negócio.
-        </p>
-        <a
-          href="/contato"
-          className="inline-flex items-center px-6 py-3 border-2 border-white text-base font-medium rounded-md text-white hover:bg-white hover:text-blue-600 transition-colors"
+        {/* CTA Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.3 }}
+          className="mt-20 bg-[#7AA2E4] rounded-2xl p-10 text-center text-white shadow-xl"
         >
-          Solicite uma Proposta
-          <FaArrowRight className="ml-2" />
-        </a>
-      </div>
+          <h2 className="text-2xl md:text-3xl font-bold mb-4">Quer resultados similares?</h2>
+          <p className="mb-6 max-w-2xl mx-auto text-lg">
+            Nossa equipe está pronta para desenvolver uma solução personalizada para o seu negócio.
+          </p>
+          <a
+            href="/contato"
+            className="inline-flex items-center gap-2 px-8 py-3 border-2 border-white text-base font-bold rounded-lg text-white hover:bg-white hover:text-[#7AA2E4] transition-colors shadow-md"
+          >
+            Solicite uma Proposta
+            <FaArrowRight />
+          </a>
+        </motion.div>
+      </section>
     </div>
   );
 };
