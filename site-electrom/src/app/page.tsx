@@ -1,7 +1,7 @@
 import HeroSection from "../components/HeroSection";
+import ServicesHorizontalScroll from "../components/ServicesHorizontalScroll";
 import TrustBar from "../components/TrustBar";
 import AboutStrip from "../components/AboutStrip";
-import TimelineHorizontal from "../components/TimelineHorizontal";
 import SolutionsGrid from "../components/SolutionsGrid";
 import ImpactNumbers from "../components/ImpactNumbers";
 import CaseCarousel from "../components/CaseCarousel";
@@ -16,9 +16,9 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-background">
       <HeroSection />
+      <ServicesHorizontalScroll />
       <TrustBar />
       <AboutStrip />
-      <TimelineHorizontal />
       <SolutionsGrid />
       <ImpactNumbers />
       <CaseCarousel />

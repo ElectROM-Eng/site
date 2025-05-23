@@ -24,11 +24,12 @@ const Navbar = () => {
           <div className="flex items-center">
             <Link href="/" className="flex-shrink-0 flex items-center">
               <Image
-                src="/logo.png"
+                src="/ElectROM - Horizontal.png"
                 alt="Electrom Logo"
-                width={150}
-                height={40}
-                className="h-8 w-auto"
+                width={180}
+                height={45}
+                className="h-10 w-auto"
+                priority
               />
             </Link>
           </div>
