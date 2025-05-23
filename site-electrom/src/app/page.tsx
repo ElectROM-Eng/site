@@ -1,10 +1,10 @@
 import HeroSection from "../components/HeroSection";
 import ServicesHorizontalScroll from "../components/ServicesHorizontalScroll";
+import SlotMachineCases from "../components/SlotMachineCases";
 import TrustBar from "../components/TrustBar";
 import AboutStrip from "../components/AboutStrip";
 import SolutionsGrid from "../components/SolutionsGrid";
 import ImpactNumbers from "../components/ImpactNumbers";
-import CaseCarousel from "../components/CaseCarousel";
 import ESGSection from "../components/ESGSection";
 import LeadMagnet from "../components/LeadMagnet";
 import TestimonialsSlider from "../components/TestimonialsSlider";
@@ -17,11 +17,11 @@ export default function Home() {
     <main className="min-h-screen bg-background">
       <HeroSection />
       <ServicesHorizontalScroll />
+      <SlotMachineCases />
       <TrustBar />
       <AboutStrip />
       <SolutionsGrid />
       <ImpactNumbers />
-      <CaseCarousel />
       <ESGSection />
       <LeadMagnet />
       <TestimonialsSlider />

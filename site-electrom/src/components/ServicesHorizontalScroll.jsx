@@ -115,21 +115,28 @@ export default function ServicesHorizontalScroll() {
     offset: ['start start', 'end end']
   })
 
-  // Transform correto para movimento horizontal
+  // Transform correto para que cada seção ocupe exatamente 100vw
+  const totalSections = services.length
   const x = useTransform(
     scrollYProgress,
     [0, 1],
-    ['0%', `-${(services.length - 1) * 100}%`]
+    [0, -(totalSections - 1) * 100]
   )
 
   return (
     <section ref={containerRef} className="h-[600vh] relative">
       <div className="sticky top-16 h-[calc(100vh-4rem)] overflow-hidden">
-        <motion.div className="flex h-full w-full" style={{ x }}>
+        <motion.div
+          className="flex h-full"
+          style={{
+            x: useTransform(x, value => `${value}vw`),
+            width: `${totalSections * 100}vw`
+          }}
+        >
           {services.map((service, idx) => (
             <div
               key={service.id}
-              className={`flex-shrink-0 w-screen h-full bg-gradient-to-br ${service.bgGradient} flex items-center relative overflow-hidden`}
+              className={`flex-shrink-0 w-[100vw] h-full bg-gradient-to-br ${service.bgGradient} flex items-center relative overflow-hidden`}
             >
               {/* Background Pattern */}
               <div className="absolute inset-0 opacity-10">
