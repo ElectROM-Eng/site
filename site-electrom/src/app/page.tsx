@@ -5,9 +5,7 @@ import TrustBar from "../components/TrustBar";
 import AboutStrip from "../components/AboutStrip";
 import SolutionsGrid from "../components/SolutionsGrid";
 import ImpactNumbers from "../components/ImpactNumbers";
-import ESGSection from "../components/ESGSection";
-import LeadMagnet from "../components/LeadMagnet";
-import TestimonialsSlider from "../components/TestimonialsSlider";
+import PartnersCarousel from "../components/PartnersCarousel";
 import BlogPreview from "../components/BlogPreview";
 import ContactCTA from "../components/ContactCTA";
 import Footer from "../components/Footer";
@@ -22,9 +20,7 @@ export default function Home() {
       <AboutStrip />
       <SolutionsGrid />
       <ImpactNumbers />
-      <ESGSection />
-      <LeadMagnet />
-      <TestimonialsSlider />
+      <PartnersCarousel />
       <BlogPreview />
       <ContactCTA />
       <Footer />

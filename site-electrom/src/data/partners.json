@@ -1,0 +1,103 @@
+{
+  "partners": [
+    {
+      "id": 1,
+      "name": "WEG",
+      "logo": "/partners/weg-logo.png",
+      "type": "strategic",
+      "link": "https://www.weg.net",
+      "linkType": "external",
+      "description": "Líder mundial em motores elétricos e automação industrial",
+      "category": "technology",
+      "priority": 1
+    },
+    {
+      "id": 2,
+      "name": "Schneider Electric",
+      "logo": "/partners/schneider-logo.png",
+      "type": "strategic",
+      "link": "https://www.se.com",
+      "linkType": "external",
+      "description": "Especialista global em gestão de energia e automação",
+      "category": "technology",
+      "priority": 1
+    },
+    {
+      "id": 3,
+      "name": "ABB",
+      "logo": "/partners/abb-logo.png",
+      "type": "strategic",
+      "link": "https://www.abb.com",
+      "linkType": "external",
+      "description": "Tecnologia líder em eletrificação e automação",
+      "category": "technology",
+      "priority": 1
+    },
+    {
+      "id": 4,
+      "name": "Canadian Solar",
+      "logo": "/partners/canadian-solar-logo.png",
+      "type": "regular",
+      "link": "/blog/partnership-canadian-solar",
+      "linkType": "internal",
+      "description": "Fornecedor global de painéis solares fotovoltaicos",
+      "category": "solar",
+      "priority": 2
+    },
+    {
+      "id": 5,
+      "name": "Trina Solar",
+      "logo": "/partners/trina-solar-logo.png",
+      "type": "regular",
+      "link": "https://www.trinasolar.com",
+      "linkType": "external",
+      "description": "Módulos solares de alta eficiência",
+      "category": "solar",
+      "priority": 2
+    },
+    {
+      "id": 6,
+      "name": "FIESC",
+      "logo": "/partners/fiesc-logo.png",
+      "type": "supporter",
+      "link": null,
+      "linkType": "none",
+      "description": "Federação das Indústrias do Estado de Santa Catarina",
+      "category": "institutional",
+      "priority": 3
+    },
+    {
+      "id": 7,
+      "name": "SEBRAE",
+      "logo": "/partners/sebrae-logo.png",
+      "type": "supporter",
+      "link": "/blog/sebrae-partnership",
+      "linkType": "internal",
+      "description": "Parceria em projetos de eficiência energética para PMEs",
+      "category": "institutional",
+      "priority": 3
+    },
+    {
+      "id": 8,
+      "name": "SolarEdge",
+      "logo": "/partners/solaredge-logo.png",
+      "type": "regular",
+      "link": "https://www.solaredge.com",
+      "linkType": "external",
+      "description": "Inversores e otimizadores para energia solar",
+      "category": "solar",
+      "priority": 2
+    }
+  ],
+  "settings": {
+    "autoScrollInterval": 3000,
+    "showCategoryFilter": false,
+    "showPriorityOrder": true,
+    "enableModal": true,
+    "responsiveBreakpoints": {
+      "mobile": 1,
+      "tablet": 3,
+      "desktop": 5
+    }
+  }
+} 
