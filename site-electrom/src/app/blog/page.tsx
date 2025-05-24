@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Image from 'next/image';
 import { FaSearch, FaCalendarAlt, FaUser, FaTag, FaArrowRight } from 'react-icons/fa';
 
 // Interface para os posts (será usada quando integrarmos com WordPress)
@@ -118,10 +119,12 @@ const BlogPage = () => {
           <article key={post.id} className="bg-white rounded-lg shadow-lg overflow-hidden">
             {/* Imagem do Post */}
             <div className="relative h-48">
-              <img
+              <Image
                 src={post.imagem}
                 alt={post.titulo}
-                className="object-cover w-full h-full"
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               />
             </div>
 

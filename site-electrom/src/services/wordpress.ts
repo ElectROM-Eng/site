@@ -220,7 +220,7 @@ export const wordpressService = {
         });
         console.log('Resposta da API:', response.data);
         return response.data;
-      } catch (error) {
+      } catch {
         console.log('Tentando rota alternativa...');
         // Se falhar, tentar sem _embed
         const response = await api.get('/certificado', {

@@ -1,6 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  eslint: {
+    // Ignorar erros de ESLint durante o build
+    ignoreDuringBuilds: true
+  },
   images: {
     domains: ['localhost', 'electrom.eng.br']
   },

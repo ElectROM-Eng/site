@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 import { FaIndustry, FaStore, FaHome, FaHospital, FaSchool, FaBuilding, FaArrowRight, FaChartLine, FaLeaf } from 'react-icons/fa';
 
 // CSS para textura noise
@@ -173,11 +174,13 @@ const CasesPage = () => {
             >
               {/* Imagem */}
               <div className="relative lg:w-1/2 h-64 lg:h-auto">
-                <img
+                <Image
                   src={case_.imagem}
                   alt={case_.titulo}
-                  className="object-cover w-full h-full transition-transform duration-300 hover:scale-105"
+                  fill
+                  className="object-cover transition-transform duration-300 hover:scale-105"
                   loading="lazy"
+                  sizes="(max-width: 1024px) 100vw, 50vw"
                 />
                 <span className="absolute top-4 left-4 bg-[#7AA2E4] text-white text-xs font-bold px-3 py-1 rounded-full shadow-md uppercase tracking-wider">
                   {segmentos.find(s => s.id === case_.segmento)?.nome}
