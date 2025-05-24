@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { FaBolt, FaLeaf, FaLightbulb, FaHandshake, FaUserTie, FaSearch, FaRecycle, FaQuoteLeft } from 'react-icons/fa';
+import { FaBolt, FaLeaf, FaLightbulb, FaHandshake, FaSearch, FaRecycle, FaQuoteLeft } from 'react-icons/fa';
 import { useRef } from 'react';
 import { useScroll, useTransform } from 'framer-motion';
 
@@ -48,7 +48,7 @@ export default function SobrePage() {
         <div className="bg-white/10 rounded-xl p-8 flex flex-col items-center text-center shadow-lg">
           <FaBolt className="text-[#7AA2E4] text-3xl mb-3" />
           <h3 className="font-bold text-lg mb-2">Visão</h3>
-          <p className="text-white/80">Ser referência nacional como "Engenharia das Energias", aliando tecnologia, impacto ambiental e retorno real.</p>
+          <p className="text-white/80">Ser referência nacional como &quot;Engenharia das Energias&quot;, aliando tecnologia, impacto ambiental e retorno real.</p>
         </div>
         <div className="bg-white/10 rounded-xl p-8 flex flex-col items-center text-center shadow-lg">
           <FaLeaf className="text-[#7AA2E4] text-3xl mb-3" />
@@ -101,7 +101,7 @@ export default function SobrePage() {
                 <div className="flex flex-col items-center min-w-[180px]">
                   <div className="w-12 h-12 rounded-full bg-[#7AA2E4] flex items-center justify-center text-xl font-bold text-white shadow-lg mb-2">2024</div>
                   <div className="bg-white/10 rounded-xl p-4 text-center text-white/90 shadow-md w-full">
-                    Reposicionamento como "Engenharia das Energias"
+                    Reposicionamento como &quot;Engenharia das Energias&quot;
                   </div>
                 </div>
               </motion.div>
@@ -146,7 +146,7 @@ export default function SobrePage() {
           <h3 className="text-xl font-bold mb-2">Eng. João Mendes</h3>
           <span className="block text-[#7AA2E4] font-semibold mb-2">Fundador e Diretor Técnico</span>
           <blockquote className="italic text-white/80 mb-2 border-l-4 border-[#7AA2E4] pl-4">
-            "Desde que comecei na engenharia elétrica, acreditei que energia deve ser inteligente, sustentável e estratégica. A Electrom nasceu desse propósito. São 25 anos, mais de mil projetos, e o mesmo compromisso: excelência com impacto real."
+            &quot;Desde que comecei na engenharia elétrica, acreditei que energia deve ser inteligente, sustentável e estratégica. A Electrom nasceu desse propósito. São 25 anos, mais de mil projetos, e o mesmo compromisso: excelência com impacto real.&quot;
           </blockquote>
           <div className="text-white/70 text-sm mb-1">CREA-SP 000000000 | Especialista em sistemas fotovoltaicos | Referência técnica no setor industrial</div>
           <div className="text-white/70 text-sm">📍 São Paulo - SP | 📞 Disponível para entrevistas, palestras e diagnósticos técnicos</div>
@@ -198,7 +198,7 @@ export default function SobrePage() {
           </div>
           {/* ...outros cards */}
         </div>
-        <p className="text-center text-white/60 mt-6 italic">"Somos uma engenharia feita por engenheiros. Cada projeto é assinado por quem entende de verdade."</p>
+        <p className="text-center text-white/60 mt-6 italic">&quot;Somos uma engenharia feita por engenheiros. Cada projeto é assinado por quem entende de verdade.&quot;</p>
       </section>
 
       {/* 8. Depoimentos ou Citações */}
@@ -208,7 +208,7 @@ export default function SobrePage() {
         <div className="relative">
           <div className="bg-white/10 rounded-xl p-8 shadow-lg flex flex-col items-center text-center">
             <FaQuoteLeft className="text-[#7AA2E4] text-3xl mb-4" />
-            <p className="text-lg text-white/90 mb-4">"A Electrom entregou mais do que prometeu. Reduzimos 47% do custo energético e ganhamos autonomia."</p>
+            <p className="text-lg text-white/90 mb-4">&quot;A Electrom entregou mais do que prometeu. Reduzimos 47% do custo energético e ganhamos autonomia.&quot;</p>
             <span className="block text-[#7AA2E4] font-semibold">Diretor de Operações</span>
             <span className="block text-white/60 text-sm">Indústria Alimentícia SP</span>
           </div>

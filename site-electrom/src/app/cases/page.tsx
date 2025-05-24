@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { FaIndustry, FaStore, FaHome, FaHospital, FaSchool, FaBuilding, FaArrowRight, FaChartLine, FaLeaf, FaMoneyBillWave } from 'react-icons/fa';
+import { FaIndustry, FaStore, FaHome, FaHospital, FaSchool, FaBuilding, FaArrowRight, FaChartLine, FaLeaf } from 'react-icons/fa';
 
 // CSS para textura noise
 const noiseStyle = {
@@ -164,7 +164,7 @@ const CasesPage = () => {
           animate="show"
           variants={container}
         >
-          {casesFiltrados.map((case_, idx) => (
+          {casesFiltrados.map((case_) => (
             <motion.div
               key={case_.id}
               variants={item}

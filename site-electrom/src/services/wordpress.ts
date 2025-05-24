@@ -1,4 +1,4 @@
-import axios, { AxiosRequestConfig, AxiosResponse, AxiosError, InternalAxiosRequestConfig } from 'axios';
+import axios, { AxiosResponse, AxiosError, InternalAxiosRequestConfig } from 'axios';
 
 // URL da API do WordPress
 const WORDPRESS_API_URL = 'https://wp.electrom.eng.br/wp-json/wp/v2';
@@ -104,7 +104,7 @@ export interface AutoridadePost {
   featured_media: number;
   template: string;
   meta: {
-    [key: string]: any;
+    [key: string]: unknown;
   };
   _embedded?: {
     'wp:featuredmedia'?: Array<{
@@ -143,7 +143,7 @@ export interface AutoridadePost {
     }>;
     twitter_card: string;
     schema: {
-      [key: string]: any;
+      [key: string]: unknown;
     };
   };
 }
@@ -230,12 +230,12 @@ export const wordpressService = {
         });
         return response.data;
       }
-    } catch (error: any) {
+    } catch (_error: unknown) {
       console.error('Erro detalhado:', {
-        message: error.message,
-        response: error.response?.data,
-        status: error.response?.status,
-        headers: error.response?.headers,
+        message: _error instanceof Error ? _error.message : 'Erro desconhecido',
+        response: _error instanceof AxiosError ? _error.response?.data : undefined,
+        status: _error instanceof AxiosError ? _error.response?.status : undefined,
+        headers: _error instanceof AxiosError ? _error.response?.headers : undefined,
         url: WORDPRESS_API_URL
       });
       return [];

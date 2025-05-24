@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { FaLeaf, FaChartLine, FaIndustry, FaHandshake, FaSolarPanel, FaUsers, FaShieldAlt, FaCoins, FaCertificate, FaChartPie, FaClipboardCheck, FaFileAlt, FaWhatsapp } from 'react-icons/fa';
+import { FaLeaf, FaChartLine, FaIndustry, FaSolarPanel, FaUsers, FaShieldAlt, FaCoins, FaCertificate, FaChartPie, FaClipboardCheck, FaFileAlt, FaWhatsapp } from 'react-icons/fa';
 import Link from 'next/link';
 import Image from 'next/image';
 
@@ -191,7 +191,7 @@ export default function SustentabilidadePage() {
           </div>
 
           <div className="bg-white/10 rounded-xl p-8 text-center mb-12">
-            <p className="text-xl italic mb-4">"Geramos 410 créditos de carbono em 18 meses com apoio da Electrom."</p>
+            <p className="text-xl italic mb-4">&quot;Geramos 410 créditos de carbono em 18 meses com apoio da Electrom.&quot;</p>
             <p className="text-[#7AA2E4] font-semibold">— Gerente de Sustentabilidade, Agro SP</p>
           </div>
 
@@ -271,7 +271,7 @@ export default function SustentabilidadePage() {
                 transition={{ duration: 0.5 }}
                 className="bg-white/10 rounded-xl p-8"
               >
-                <p className="text-xl italic mb-4">"{depoimento.quote}"</p>
+                <p className="text-xl italic mb-4">&quot;{depoimento.quote}&quot;</p>
                 <p className="text-[#7AA2E4] font-semibold">— {depoimento.author}</p>
               </motion.div>
             ))}
