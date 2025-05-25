@@ -8,7 +8,6 @@ import ImpactNumbers from "../components/ImpactNumbers";
 import PartnersCarousel from "../components/PartnersCarousel";
 import BlogPreview from "../components/BlogPreview";
 import ContactCTA from "../components/ContactCTA";
-import Footer from "../components/Footer";
 
 export default function Home() {
   return (
@@ -23,7 +22,6 @@ export default function Home() {
       <PartnersCarousel />
       <BlogPreview />
       <ContactCTA />
-      <Footer />
     </main>
   );
 }

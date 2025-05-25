@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "../styles/globals.css";
 import "../styles/carousel.css";
 import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
   title: "Electrom Engenharia - Engenharia das Energias",
@@ -21,8 +22,9 @@ export default function RootLayout({
       <body className="font-primary" suppressHydrationWarning={true}>
         <Navbar />
         <main className="pt-16">
-        {children}
+          {children}
         </main>
+        <Footer />
       </body>
     </html>
   );

@@ -1,9 +1,11 @@
 'use client'
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
+import { wordpressService, Post } from '@/services/wordpress'
 
-const posts = [
+// Dados mockados como fallback
+const fallbackPosts = [
   {
     id: 1,
     title: 'Como reduzir custos com energia solar',
@@ -13,7 +15,8 @@ const posts = [
       'Descubra estratégias práticas para maximizar sua economia com energia solar e acelerar o retorno do investimento.',
     img: '/blog/solar.jpg',
     readTime: '5 min',
-    featured: true
+    featured: true,
+    slug: 'como-reduzir-custos-energia-solar'
   },
   {
     id: 2,
@@ -24,7 +27,8 @@ const posts = [
       'Explore as principais inovações em eficiência energética que estão transformando o setor industrial.',
     img: '/blog/eficiencia.jpg',
     readTime: '7 min',
-    featured: false
+    featured: false,
+    slug: 'eficiencia-energetica-tendencias-2024'
   },
   {
     id: 3,
@@ -35,7 +39,8 @@ const posts = [
       'Entenda quando e como migrar para o mercado livre de energia pode beneficiar sua empresa.',
     img: '/blog/mercado-livre.jpg',
     readTime: '6 min',
-    featured: false
+    featured: false,
+    slug: 'mercado-livre-energia-vale-pena'
   }
 ]
 
@@ -108,7 +113,10 @@ const BlogCard = ({ post, index }) => {
         {/* Footer */}
         <div className="flex items-center justify-between pt-4 border-t border-gray-100">
           <span className="text-gray-400 text-sm">{post.date}</span>
-          <div className="flex items-center text-brand-blue font-semibold text-sm group-hover:gap-2 transition-all duration-300">
+          <a
+            href={`/blog/${post.slug}`}
+            className="flex items-center text-brand-blue font-semibold text-sm group-hover:gap-2 transition-all duration-300"
+          >
             Ler mais
             <svg
               className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform duration-300"
@@ -123,7 +131,7 @@ const BlogCard = ({ post, index }) => {
                 d="M9 5l7 7-7 7"
               />
             </svg>
-          </div>
+          </a>
         </div>
       </div>
     </motion.article>
@@ -131,6 +139,52 @@ const BlogCard = ({ post, index }) => {
 }
 
 export default function BlogPreview() {
+  const [posts, setPosts] = useState(fallbackPosts)
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    const loadPosts = async () => {
+      try {
+        console.log('🔍 Carregando posts do WordPress para o home...')
+
+        // Tentar buscar posts do WordPress
+        const wpPosts = await wordpressService.getBlogPosts(1, 3)
+
+        if (wpPosts && wpPosts.length > 0) {
+          console.log('✅ Posts do WordPress carregados:', wpPosts.length)
+
+          // Converter posts do WordPress para o formato do componente
+          const formattedPosts = wpPosts.map((post, index) => ({
+            id: post.id,
+            title: post.title.rendered,
+            category: 'Blog', // Pode ser extraído das categorias do post
+            date: new Date(post.date).toLocaleDateString('pt-BR'),
+            excerpt:
+              post.excerpt.rendered.replace(/<[^>]*>/g, '').substring(0, 120) +
+              '...',
+            img:
+              post._embedded?.['wp:featuredmedia']?.[0]?.source_url ||
+              '/blog/default.jpg',
+            readTime: '5 min', // Pode ser calculado baseado no conteúdo
+            featured: index === 0, // Primeiro post como destaque
+            slug: post.slug
+          }))
+
+          setPosts(formattedPosts)
+        } else {
+          console.log('⚠️ Nenhum post encontrado, usando fallback')
+        }
+      } catch (error) {
+        console.error('❌ Erro ao carregar posts do WordPress:', error)
+        console.log('📝 Usando posts mockados como fallback')
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    loadPosts()
+  }, [])
+
   return (
     <section className="w-full py-16 md:py-20 bg-gradient-to-br from-gray-50 to-white">
       <div className="max-w-7xl mx-auto px-4 md:px-6">
@@ -156,41 +210,53 @@ export default function BlogPreview() {
           </p>
         </motion.div>
 
+        {/* Loading State */}
+        {loading && (
+          <div className="text-center py-12">
+            <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-brand-blue"></div>
+            <p className="mt-4 text-gray-600">Carregando artigos...</p>
+          </div>
+        )}
+
         {/* Blog Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mb-12">
-          {posts.map((post, index) => (
-            <BlogCard key={post.id} post={post} index={index} />
-          ))}
-        </div>
+        {!loading && (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mb-12">
+            {posts.map((post, index) => (
+              <BlogCard key={post.id} post={post} index={index} />
+            ))}
+          </div>
+        )}
 
         {/* CTA to Blog */}
-        <motion.div
-          className="text-center"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-        >
-          <a
-            href="/blog"
-            className="inline-flex items-center gap-2 bg-brand-petrol text-white font-semibold px-8 py-4 rounded-xl hover:bg-brand-petrol/90 hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
+        {!loading && (
+          <motion.div
+            className="text-center"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.3 }}
           >
-            Ver Todos os Artigos
-            <svg
-              className="w-5 h-5"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
+            <a
+              href="/blog"
+              className="inline-flex items-center gap-2 bg-brand-petrol text-white font-semibold px-8 py-4 rounded-xl hover:bg-brand-petrol/90 hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M17 8l4 4m0 0l-4 4m4-4H3"
-              />
-            </svg>
-          </a>
-        </motion.div>
+              Ver Todos os Artigos
+              <svg
+                className="w-5 h-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M17 8l4 4m0 0l-4 4m4-4H3"
+                />
+              </svg>
+            </a>
+          </motion.div>
+        )}
       </div>
     </section>
   )
