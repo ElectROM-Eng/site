@@ -45,14 +45,32 @@ api.interceptors.request.use(
 
 // Interceptor para tratar erros
 api.interceptors.response.use(
-    (response: AxiosResponse) => response,
+    (response: AxiosResponse) => {
+        console.log('Resposta bem-sucedida:', response.status, response.config.url);
+        return response;
+    },
     async (error: AxiosError) => {
+        console.error('Erro na requisição:', {
+            message: error.message,
+            code: error.code,
+            status: error.response?.status,
+            url: error.config?.url,
+            headers: error.response?.headers
+        });
+
+        // Detectar erro de CORS
+        if (error.code === 'ERR_NETWORK' || error.message.includes('CORS')) {
+            console.error('🚨 Erro de CORS detectado! Configure o .htaccess ou plugin Enable CORS');
+            throw new Error('CORS_ERROR: Verifique a configuração CORS no WordPress');
+        }
+
+        // Tentar novamente sem _embed se der erro de rede
         if (error.code === 'ERR_NETWORK') {
-            // Tenta novamente sem _embed
             const config = error.config;
             if (config?.params?._embed) {
                 delete config.params._embed;
                 try {
+                    console.log('Tentando novamente sem _embed...');
                     return await axios(config);
                 } catch (retryError) {
                     console.error('Erro na segunda tentativa:', retryError);
@@ -60,6 +78,7 @@ api.interceptors.response.use(
                 }
             }
         }
+        
         throw error;
     }
 );

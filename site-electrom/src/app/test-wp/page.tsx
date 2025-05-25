@@ -7,24 +7,51 @@ export default function TestWPPage() {
   const [categories, setCategories] = useState<Category[]>([]);
   const [loading, setLoading] = useState(true);
   const [connectionStatus, setConnectionStatus] = useState<boolean | null>(null);
+  const [corsError, setCorsError] = useState<string | null>(null);
+  const [apiTest, setApiTest] = useState<any>(null);
 
   useEffect(() => {
     const testWordPress = async () => {
       try {
         setLoading(true);
+        setCorsError(null);
         
-        // Testar conexão
+        console.log('🔍 Iniciando teste WordPress...');
+        
+        // Teste direto da API
+        try {
+          const directTest = await fetch('https://wp.electrom.eng.br/wp-json/wp/v2/posts?per_page=1');
+          const directData = await directTest.json();
+          setApiTest(directData);
+          console.log('✅ Teste direto da API funcionou:', directData);
+        } catch (directError) {
+          console.error('❌ Teste direto da API falhou:', directError);
+          setApiTest({ error: 'Falha no teste direto' });
+        }
+        
+        // Testar conexão via service
+        console.log('🔍 Testando via wordpressService...');
         const isConnected = await wordpressService.testConnection();
         setConnectionStatus(isConnected);
         
         if (isConnected) {
           // Buscar categorias
+          console.log('🔍 Buscando categorias...');
           const cats = await wordpressService.getCategories();
           setCategories(cats);
         }
       } catch (error) {
-        console.error('Erro no teste:', error);
+        console.error('❌ Erro no teste:', error);
         setConnectionStatus(false);
+        
+        // Detectar erro de CORS
+        if (error instanceof Error) {
+          if (error.message.includes('CORS') || error.message.includes('Network Error') || error.message.includes('ERR_NETWORK')) {
+            setCorsError('Erro de CORS detectado. A API está funcionando, mas o CORS está bloqueando o acesso.');
+          } else {
+            setCorsError(`Erro: ${error.message}`);
+          }
+        }
       } finally {
         setLoading(false);
       }
@@ -59,6 +86,39 @@ export default function TestWPPage() {
         <p className="mt-2 text-gray-600">
           API URL: https://wp.electrom.eng.br/wp-json/wp/v2
         </p>
+        
+        {corsError && (
+          <div className="mt-4 p-3 bg-red-50 border border-red-200 rounded-lg">
+            <p className="text-red-800 font-medium">🚨 Problema Detectado:</p>
+            <p className="text-red-700 text-sm mt-1">{corsError}</p>
+          </div>
+        )}
+        
+        {!connectionStatus && (
+          <div className="mt-4 p-3 bg-yellow-50 border border-yellow-200 rounded-lg">
+            <p className="text-yellow-800 font-medium">💡 Soluções:</p>
+            <ol className="text-yellow-700 text-sm mt-1 list-decimal list-inside space-y-1">
+              <li>Configure o arquivo .htaccess no WordPress</li>
+              <li>Ou configure o plugin Enable CORS corretamente</li>
+              <li>Verifique se a API está acessível: <a href="https://wp.electrom.eng.br/wp-json/wp/v2/posts" target="_blank" className="underline">Testar API</a></li>
+            </ol>
+          </div>
+        )}
+      </div>
+
+      {/* Teste Direto da API */}
+      <div className="mb-8 p-4 rounded-lg border">
+        <h2 className="text-xl font-semibold mb-2">Teste Direto da API</h2>
+        {apiTest ? (
+          <div className="bg-gray-50 p-3 rounded text-sm">
+            <p className="font-medium text-green-800 mb-2">✅ API WordPress acessível diretamente</p>
+            <pre className="text-xs text-gray-600 overflow-x-auto">
+              {JSON.stringify(apiTest, null, 2).substring(0, 500)}...
+            </pre>
+          </div>
+        ) : (
+          <p className="text-gray-600">Testando acesso direto...</p>
+        )}
       </div>
 
       {/* Lista de Categorias */}
@@ -101,7 +161,7 @@ export default function TestWPPage() {
         <h3 className="text-lg font-semibold text-blue-900 mb-3">📋 Próximos Passos</h3>
         <ol className="list-decimal list-inside space-y-2 text-blue-800">
           <li>Crie as categorias necessárias no WordPress (Posts → Categories)</li>
-          <li>Anote os IDs das categorias "blog" e "cases" da tabela acima</li>
+          <li>Anote os IDs das categorias &quot;blog&quot; e &quot;cases&quot; da tabela acima</li>
           <li>Publique alguns posts de teste em cada categoria</li>
           <li>Teste a integração na página /blog</li>
         </ol>
