@@ -45,7 +45,7 @@ export default function HeroSection() {
           />
         </h1>
         <h2 className="text-xl md:text-2xl lg:text-3xl font-light mb-10 max-w-3xl">
-          25 anos de engenharia elétrica, solar e eficiência energética para
+          30 anos de engenharia elétrica, solar e eficiência energética para
           reduzir custos e emissões na sua empresa.
         </h2>
         <div className="flex flex-col sm:flex-row gap-4">

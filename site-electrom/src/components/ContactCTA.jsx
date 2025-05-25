@@ -146,7 +146,7 @@ const ContactCTA = () => {
                   clipRule="evenodd"
                 />
               </svg>
-              25+ anos de experiência
+              30+ anos de experiência
             </div>
           </div>
         </motion.div>
@@ -232,7 +232,7 @@ const ContactCTA = () => {
             <span className="text-xs text-white/60">•</span>
             <span className="text-xs text-white/60">ISO 9001</span>
             <span className="text-xs text-white/60">•</span>
-            <span className="text-xs text-white/60">25+ Anos</span>
+            <span className="text-xs text-white/60">30+ Anos</span>
           </div>
         </motion.div>
       </div>

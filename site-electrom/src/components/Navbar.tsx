@@ -1,11 +1,22 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY;
+      setIsScrolled(scrollTop > 50);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const menuItems = [
     { label: 'Home', href: '/' },
@@ -18,17 +29,23 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className="bg-white shadow-md fixed w-full z-50">
+    <nav 
+      className={`fixed w-full z-50 transition-all duration-300 ${
+        isScrolled 
+          ? 'bg-white shadow-md' 
+          : 'bg-transparent'
+      }`}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           <div className="flex items-center">
             <Link href="/" className="flex-shrink-0 flex items-center">
               <Image
-                src="/ElectROM - Horizontal.png"
+                src={isScrolled ? "/ElectROM - Horizontal (inverso).png" : "/ElectROM - Horizontal.png"}
                 alt="Electrom Logo"
                 width={180}
                 height={45}
-                className="h-10 w-auto"
+                className="h-10 w-auto transition-all duration-300"
                 priority
               />
             </Link>
@@ -40,7 +57,11 @@ const Navbar = () => {
               <Link
                 key={item.href}
                 href={item.href}
-                className="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors duration-200"
+                className={`px-3 py-2 text-sm font-medium transition-all duration-300 ${
+                  isScrolled 
+                    ? 'text-gray-700 hover:text-blue-600' 
+                    : 'text-white hover:text-brand-blue'
+                }`}
               >
                 {item.label}
               </Link>
@@ -51,7 +72,11 @@ const Navbar = () => {
           <div className="md:hidden flex items-center">
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-blue-600 focus:outline-none"
+              className={`inline-flex items-center justify-center p-2 rounded-md focus:outline-none transition-colors duration-300 ${
+                isScrolled 
+                  ? 'text-gray-700 hover:text-blue-600' 
+                  : 'text-white hover:text-brand-blue'
+              }`}
             >
               <span className="sr-only">Abrir menu</span>
               {!isMenuOpen ? (
@@ -92,13 +117,19 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       {isMenuOpen && (
-        <div className="md:hidden">
+        <div className={`md:hidden transition-all duration-300 ${
+          isScrolled ? 'bg-white' : 'bg-brand-petrol/95 backdrop-blur-sm'
+        }`}>
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
             {menuItems.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className="text-gray-700 hover:text-blue-600 block px-3 py-2 text-base font-medium"
+                className={`block px-3 py-2 text-base font-medium transition-colors duration-300 ${
+                  isScrolled 
+                    ? 'text-gray-700 hover:text-blue-600' 
+                    : 'text-white hover:text-brand-blue'
+                }`}
                 onClick={() => setIsMenuOpen(false)}
               >
                 {item.label}

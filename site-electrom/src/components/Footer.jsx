@@ -100,7 +100,7 @@ export default function Footer() {
               </div>
               
               <p className="text-white/80 mb-6 leading-relaxed">
-                Transformando o futuro energético há mais de 25 anos com soluções sustentáveis e inovadoras.
+                Transformando o futuro energético há mais de 30 anos com soluções sustentáveis e inovadoras.
               </p>
 
               {/* Contact Info */}
@@ -110,7 +110,7 @@ export default function Footer() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                   </svg>
-                  <span className="text-sm text-white/80">Florianópolis, SC</span>
+                  <span className="text-sm text-white/80">São Paulo, SP</span>
                 </div>
                 
                 <div className="flex items-center gap-3">

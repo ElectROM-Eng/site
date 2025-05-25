@@ -5,65 +5,52 @@ import { motion, useScroll, useTransform } from 'framer-motion'
 const services = [
   {
     id: 1,
-    title: 'Projetos Fotovoltáicos',
+    title: 'Engenharia de Energias',
     description:
-      'Sistemas de energia solar sob medida para reduzir seus custos energéticos e aumentar a sustentabilidade do seu negócio.',
+      'Soluções especializadas em conservação e eficiência energética para otimizar o consumo e reduzir impactos ambientais.',
     features: [
-      'Dimensionamento técnico personalizado',
-      'Análise completa de viabilidade econômica',
-      'Projeto executivo detalhado',
-      'Acompanhamento de instalação e comissionamento'
+      'Conservação energética',
+      'Eficiência energética',
+      'Controle de emissões'
     ],
     testimonial:
-      'A Electrom transformou nossa empresa com energia solar. Reduzimos 80% da conta de luz e ainda contribuímos para o meio ambiente.',
-    bgGradient: 'from-yellow-600/40 via-yellow-700/30 to-brand-petrol',
-    cta: 'Calcular Economia Solar',
-    icon: '☀️'
+      'A Electrom transformou nossa gestão energética. Reduzimos 40% do consumo e melhoramos nosso controle de emissões.',
+    bgGradient: 'from-green-600/40 via-green-700/30 to-brand-petrol',
+    cta: 'Solicitar Auditoria',
+    icon: '⚡'
   },
   {
     id: 2,
-    title: 'Gerenciamento de Obras',
+    title: 'Energias Renováveis',
     description:
-      'Coordenação completa de projetos elétricos e energéticos, garantindo prazo, qualidade e segurança em todas as etapas.',
+      'Sistemas completos de energia limpa e sustentável para autonomia energética e impacto ambiental positivo.',
     features: [
-      'Planejamento executivo detalhado',
-      'Controle rigoroso de qualidade',
-      'Gestão especializada de equipes técnicas',
-      'Entrega garantida no prazo acordado'
+      'Fotovoltaica',
+      'Eólica',
+      'Aquecimento Solar',
+      'Estações de Carregamento EV'
     ],
     testimonial:
-      'Projeto executado no prazo e com qualidade excepcional. A equipe da Electrom é altamente profissional.',
-    bgGradient: 'from-blue-600/40 via-blue-700/30 to-brand-petrol',
-    cta: 'Solicitar Orçamento',
-    icon: '🏗️'
+      'Com o sistema de energias renováveis da Electrom, alcançamos 95% de autonomia energética. Investimento que se paga sozinho.',
+    bgGradient: 'from-yellow-600/40 via-yellow-700/30 to-brand-petrol',
+    cta: 'Explorar Soluções',
+    icon: '🌱'
   },
   {
     id: 3,
-    title: 'Projetos Hidráulicos',
-    description:
-      'Soluções integradas em sistemas hidráulicos industriais e prediais com foco em eficiência e sustentabilidade.',
-    features: [
-      'Sistemas prediais completos',
-      'Bombeamento industrial otimizado',
-      'Automação hidráulica inteligente',
-      'Projetos de eficiência hídrica'
-    ],
-    testimonial:
-      'O sistema hidráulico projetado pela Electrom otimizou nosso consumo de água em 40% e reduziu custos operacionais.',
-    bgGradient: 'from-cyan-600/40 via-cyan-700/30 to-brand-petrol',
-    cta: 'Consultar Especialista',
-    icon: '💧'
-  },
-  {
-    id: 4,
-    title: 'Projetos e Instalação de Média e Baixa Tensão',
+    title: 'Instalação de Média e Baixa Tensão',
     description:
       'Projetos elétricos industriais e comerciais com máxima segurança e conformidade às normas técnicas.',
     features: [
-      'Subestações industriais e comerciais',
-      'Painéis elétricos personalizados',
-      'Cabeamento industrial especializado',
-      'Sistemas de proteção e automação'
+      'Ramal de entrada',
+      'Cabine Primária',
+      'Centro de Medição',
+      'SPDA',
+      'HVAC',
+      'CFTV',
+      'Vistorias',
+      'Manutenção',
+      'Automação'
     ],
     testimonial:
       'Instalação elétrica impecável. Segurança e eficiência que nossa indústria precisava.',
@@ -72,38 +59,38 @@ const services = [
     icon: '⚡'
   },
   {
-    id: 5,
-    title: 'Energias Renováveis',
-    description:
-      'Soluções completas em fontes renováveis para autonomia energética e impacto ambiental positivo.',
-    features: [
-      'Energia eólica de pequeno e médio porte',
-      'Sistemas de biomassa sustentável',
-      'Pequenas centrais hidrelétricas',
-      'Sistemas híbridos otimizados'
-    ],
-    testimonial:
-      'Com o sistema híbrido da Electrom, alcançamos 95% de autonomia energética. Investimento que se paga sozinho.',
-    bgGradient: 'from-green-600/40 via-green-700/30 to-brand-petrol',
-    cta: 'Explorar Soluções',
-    icon: '🌱'
-  },
-  {
-    id: 6,
-    title: 'Consultoria em Energia',
+    id: 4,
+    title: 'Consultoria de Energia',
     description:
       'Diagnósticos energéticos e estratégias personalizadas para otimização de consumo e redução de custos.',
     features: [
-      'Auditoria energética completa',
-      'Análise tarifária especializada',
-      'Estratégias de eficiência operacional',
-      'Cálculo detalhado de ROI de projetos'
+      'Mercado Livre de Energia',
+      'Geração de Distribuida (GD)',
+      'Gestão de Crédito de Energia',
+      'Créditos de Carbono'
     ],
     testimonial:
       'A consultoria da Electrom identificou oportunidades que resultaram em 30% de economia na nossa conta de energia.',
     bgGradient: 'from-indigo-600/40 via-indigo-700/30 to-brand-petrol',
-    cta: 'Solicitar Auditoria',
+    cta: 'Solicitar Consultoria',
     icon: '📊'
+  },
+  {
+    id: 5,
+    title: 'Gerenciamento de Obras',
+    description:
+      'Coordenação completa de projetos elétricos e energéticos, garantindo prazo, qualidade e segurança em todas as etapas.',
+    features: [
+      'Gestão de contrato',
+      'Gestão de equipe',
+      'Gestão de materiais',
+      'Segurança patrimonial e pessoal'
+    ],
+    testimonial:
+      'Projeto executado no prazo e com qualidade excepcional. A equipe da Electrom é altamente profissional.',
+    bgGradient: 'from-blue-600/40 via-blue-700/30 to-brand-petrol',
+    cta: 'Solicitar Orçamento',
+    icon: '🏗️'
   }
 ]
 
@@ -144,22 +131,28 @@ export default function ServicesHorizontalScroll() {
               </div>
 
               {/* Content - 2 Columns */}
-              <div className="container mx-auto px-6 md:px-16 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center h-full relative z-10">
+              <div className="container mx-auto px-4 md:px-8 grid grid-cols-1 lg:grid-cols-2 gap-8 items-center h-full relative z-10">
                 {/* Left Column */}
-                <div className="space-y-8">
-                  <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-white">
+                <div className="space-y-5">
+                  <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-none text-white">
                     {service.title}
                   </h2>
 
-                  <p className="text-xl md:text-2xl font-light text-gray-200 leading-relaxed">
+                  <p className="text-lg md:text-xl font-light text-gray-200 leading-relaxed">
                     {service.description}
                   </p>
 
-                  <ul className="space-y-3">
+                  <ul
+                    className={`${
+                      service.features.length > 6
+                        ? 'grid grid-cols-2 gap-x-4 gap-y-2'
+                        : 'space-y-2'
+                    }`}
+                  >
                     {service.features.map((feature, featureIdx) => (
                       <li
                         key={featureIdx}
-                        className="flex items-center text-white text-lg"
+                        className="flex items-center text-white text-base"
                       >
                         <span className="w-2 h-2 bg-brand-blue rounded-full mr-3 flex-shrink-0"></span>
                         {feature}
@@ -167,10 +160,10 @@ export default function ServicesHorizontalScroll() {
                     ))}
                   </ul>
 
-                  <button className="bg-brand-blue hover:bg-brand-blue/90 text-white font-semibold px-8 py-4 rounded-lg shadow-lg transition-all text-lg inline-flex items-center">
+                  <button className="bg-brand-blue hover:bg-brand-blue/90 text-white font-semibold px-6 py-3 rounded-lg shadow-lg transition-all text-base inline-flex items-center mt-4">
                     {service.cta}
                     <svg
-                      className="ml-2 w-5 h-5"
+                      className="ml-2 w-4 h-4"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -186,23 +179,23 @@ export default function ServicesHorizontalScroll() {
                 </div>
 
                 {/* Right Column */}
-                <div className="space-y-8">
+                <div className="space-y-6">
                   {/* Image Placeholder */}
                   <div className="relative aspect-video bg-white/10 backdrop-blur-sm rounded-xl border border-white/20 overflow-hidden shadow-2xl">
                     <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="text-6xl opacity-40">{service.icon}</div>
+                      <div className="text-5xl opacity-40">{service.icon}</div>
                     </div>
-                    <div className="absolute bottom-4 right-4 bg-black/50 text-white px-3 py-1 rounded text-sm">
+                    <div className="absolute bottom-3 right-3 bg-black/50 text-white px-2 py-1 rounded text-xs">
                       Imagem do projeto
                     </div>
                   </div>
 
                   {/* Testimonial */}
-                  <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20 shadow-xl">
-                    <blockquote className="text-white italic text-lg leading-relaxed">
+                  <div className="bg-white/10 backdrop-blur-sm rounded-xl p-5 border border-white/20 shadow-xl">
+                    <blockquote className="text-white italic text-base leading-relaxed">
                       "{service.testimonial}"
                     </blockquote>
-                    <div className="mt-4 text-brand-blue font-semibold">
+                    <div className="mt-3 text-brand-blue font-semibold text-sm">
                       — Cliente Electrom
                     </div>
                   </div>

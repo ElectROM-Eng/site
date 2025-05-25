@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
+import Link from 'next/link'
 import { wordpressService, Post } from '@/services/wordpress'
 
 // Dados mockados como fallback
@@ -46,95 +47,94 @@ const fallbackPosts = [
 
 const BlogCard = ({ post, index }) => {
   return (
-    <motion.article
-      className="group bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 cursor-pointer"
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.3 }}
-      transition={{ duration: 0.6, delay: index * 0.1 }}
-      whileHover={{ y: -8 }}
-    >
-      {/* Featured Badge */}
-      {post.featured && (
-        <div className="absolute top-4 left-4 z-10">
-          <span className="bg-brand-blue text-white text-xs font-semibold px-3 py-1 rounded-full">
-            Em Destaque
-          </span>
-        </div>
-      )}
+    <Link href={`/blog/${post.slug}`}>
+      <motion.article
+        className="group bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 cursor-pointer"
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.3 }}
+        transition={{ duration: 0.6, delay: index * 0.1 }}
+        whileHover={{ y: -8 }}
+      >
+        {/* Featured Badge */}
+        {post.featured && (
+          <div className="absolute top-4 left-4 z-10">
+            <span className="bg-brand-blue text-white text-xs font-semibold px-3 py-1 rounded-full">
+              Em Destaque
+            </span>
+          </div>
+        )}
 
-      {/* Image Container */}
-      <div className="relative h-48 md:h-52 overflow-hidden bg-gray-200">
-        <Image
-          src={post.img}
-          alt={post.title}
-          fill
-          className="object-cover group-hover:scale-110 transition-transform duration-500"
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-      </div>
-
-      {/* Content */}
-      <div className="p-6 space-y-4">
-        {/* Category and Read Time */}
-        <div className="flex items-center justify-between text-sm">
-          <span className="bg-brand-blue/10 text-brand-blue font-semibold px-3 py-1 rounded-full uppercase tracking-wide">
-            {post.category}
-          </span>
-          <span className="text-gray-500 flex items-center gap-1">
-            <svg
-              className="w-4 h-4"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-              />
-            </svg>
-            {post.readTime}
-          </span>
+        {/* Image Container */}
+        <div className="relative h-48 md:h-52 overflow-hidden bg-gray-200">
+          <Image
+            src={post.img}
+            alt={post.title}
+            fill
+            className="object-cover group-hover:scale-110 transition-transform duration-500"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
         </div>
 
-        {/* Title */}
-        <h3 className="text-xl font-bold text-brand-petrol group-hover:text-brand-blue transition-colors duration-300 line-clamp-2 leading-tight">
-          {post.title}
-        </h3>
+        {/* Content */}
+        <div className="p-6 space-y-4">
+          {/* Category and Read Time */}
+          <div className="flex items-center justify-between text-sm">
+            <span className="bg-brand-blue/10 text-brand-blue font-semibold px-3 py-1 rounded-full uppercase tracking-wide">
+              {post.category}
+            </span>
+            <span className="text-gray-500 flex items-center gap-1">
+              <svg
+                className="w-4 h-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                />
+              </svg>
+              {post.readTime}
+            </span>
+          </div>
 
-        {/* Excerpt */}
-        <p className="text-gray-600 text-sm leading-relaxed line-clamp-3">
-          {post.excerpt}
-        </p>
+          {/* Title */}
+          <h3 className="text-xl font-bold text-brand-petrol group-hover:text-brand-blue transition-colors duration-300 line-clamp-2 leading-tight">
+            {post.title}
+          </h3>
 
-        {/* Footer */}
-        <div className="flex items-center justify-between pt-4 border-t border-gray-100">
-          <span className="text-gray-400 text-sm">{post.date}</span>
-          <a
-            href={`/blog/${post.slug}`}
-            className="flex items-center text-brand-blue font-semibold text-sm group-hover:gap-2 transition-all duration-300"
-          >
-            Ler mais
-            <svg
-              className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform duration-300"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M9 5l7 7-7 7"
-              />
-            </svg>
-          </a>
+          {/* Excerpt */}
+          <p className="text-gray-600 text-sm leading-relaxed line-clamp-3">
+            {post.excerpt}
+          </p>
+
+          {/* Footer */}
+          <div className="flex items-center justify-between pt-4 border-t border-gray-100">
+            <span className="text-gray-400 text-sm">{post.date}</span>
+            <span className="flex items-center text-brand-blue font-semibold text-sm group-hover:gap-2 transition-all duration-300">
+              Ler mais
+              <svg
+                className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform duration-300"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M9 5l7 7-7 7"
+                />
+              </svg>
+            </span>
+          </div>
         </div>
-      </div>
-    </motion.article>
+      </motion.article>
+    </Link>
   )
 }
 
@@ -186,7 +186,7 @@ export default function BlogPreview() {
   }, [])
 
   return (
-    <section className="w-full py-16 md:py-20 bg-gradient-to-br from-gray-50 to-white">
+    <section className="w-full py-16 md:py-20 bg-gradient-to-r from-gray-50 to-gray-100">
       <div className="max-w-7xl mx-auto px-4 md:px-6">
         {/* Header */}
         <motion.div
@@ -236,7 +236,7 @@ export default function BlogPreview() {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.3 }}
           >
-            <a
+            <Link
               href="/blog"
               className="inline-flex items-center gap-2 bg-brand-petrol text-white font-semibold px-8 py-4 rounded-xl hover:bg-brand-petrol/90 hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
             >
@@ -254,7 +254,7 @@ export default function BlogPreview() {
                   d="M17 8l4 4m0 0l-4 4m4-4H3"
                 />
               </svg>
-            </a>
+            </Link>
           </motion.div>
         )}
       </div>

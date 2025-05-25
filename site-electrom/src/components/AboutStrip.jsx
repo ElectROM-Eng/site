@@ -15,7 +15,7 @@ export default function AboutStrip() {
         “Engenharia das Energias” é nosso compromisso em combinar <span className="text-brand-blue">sustentabilidade, eficiência e inovação</span> para um futuro energético consciente.
       </blockquote>
       <p className="text-lg md:text-xl text-gray-200 text-center max-w-2xl">
-        Com mais de 25 anos de atuação, a Electrom Engenharia entrega soluções certificadas, seguras e inovadoras para empresas que buscam economia, sustentabilidade e conformidade. Nosso legado é construir um futuro energético mais eficiente, confiável e responsável.
+        Com mais de 30 anos de atuação, a Electrom Engenharia entrega soluções certificadas, seguras e inovadoras para empresas que buscam economia, sustentabilidade e conformidade. Nosso legado é construir um futuro energético mais eficiente, confiável e responsável.
       </p>
     </motion.section>
   );

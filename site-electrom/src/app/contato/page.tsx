@@ -51,7 +51,7 @@ const ContactPage = () => {
             Fale com engenheiros especialistas em energia
           </h1>
           <p className="text-lg md:text-xl text-[#7AA2E4] font-medium max-w-2xl mx-auto">
-            Mais de 25 anos em projetos de energia solar e elétrica. Receba um diagnóstico gratuito com quem entende de eficiência e retorno.
+            Mais de 30 anos em projetos de energia solar e elétrica. Receba um diagnóstico gratuito com quem entende de eficiência e retorno.
           </p>
         </header>
 

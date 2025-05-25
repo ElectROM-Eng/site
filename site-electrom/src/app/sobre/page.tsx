@@ -27,7 +27,7 @@ export default function SobrePage() {
           {/* <img src="/images/hero-solar.jpg" alt="Instalação solar" className="object-cover w-full h-full opacity-30" /> */}
         </div>
         <div className="relative z-10">
-          <h1 className="text-4xl md:text-5xl font-extrabold mb-4 drop-shadow-lg">25 Anos de Energia com Propósito</h1>
+          <h1 className="text-4xl md:text-5xl font-extrabold mb-4 drop-shadow-lg">30 Anos de Energia com Propósito</h1>
           <p className="text-xl md:text-2xl text-[#7AA2E4] font-medium mb-8 max-w-2xl mx-auto">
             Sustentabilidade, eficiência e inovação guiando empresas rumo à autonomia energética.
           </p>
@@ -146,7 +146,7 @@ export default function SobrePage() {
           <h3 className="text-xl font-bold mb-2">Eng. João Mendes</h3>
           <span className="block text-[#7AA2E4] font-semibold mb-2">Fundador e Diretor Técnico</span>
           <blockquote className="italic text-white/80 mb-2 border-l-4 border-[#7AA2E4] pl-4">
-            &quot;Desde que comecei na engenharia elétrica, acreditei que energia deve ser inteligente, sustentável e estratégica. A Electrom nasceu desse propósito. São 25 anos, mais de mil projetos, e o mesmo compromisso: excelência com impacto real.&quot;
+            &quot;Desde que comecei na engenharia elétrica, acreditei que energia deve ser inteligente, sustentável e estratégica. A Electrom nasceu desse propósito. São 30 anos, mais de mil projetos, e o mesmo compromisso: excelência com impacto real.&quot;
           </blockquote>
           <div className="text-white/70 text-sm mb-1">CREA-SP 000000000 | Especialista em sistemas fotovoltaicos | Referência técnica no setor industrial</div>
           <div className="text-white/70 text-sm">📍 São Paulo - SP | 📞 Disponível para entrevistas, palestras e diagnósticos técnicos</div>

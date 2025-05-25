@@ -3,7 +3,6 @@ import ServicesHorizontalScroll from "../components/ServicesHorizontalScroll";
 import SlotMachineCases from "../components/SlotMachineCases";
 import TrustBar from "../components/TrustBar";
 import AboutStrip from "../components/AboutStrip";
-import SolutionsGrid from "../components/SolutionsGrid";
 import ImpactNumbers from "../components/ImpactNumbers";
 import PartnersCarousel from "../components/PartnersCarousel";
 import BlogPreview from "../components/BlogPreview";
@@ -17,7 +16,6 @@ export default function Home() {
       <SlotMachineCases />
       <TrustBar />
       <AboutStrip />
-      <SolutionsGrid />
       <ImpactNumbers />
       <PartnersCarousel />
       <BlogPreview />

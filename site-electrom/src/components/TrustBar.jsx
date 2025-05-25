@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import CountUp from 'react-countup';
 
 const metrics = [
-  { value: 25, prefix: '+', suffix: '', label: 'anos de mercado' },
+  { value: 30, prefix: '+', suffix: '', label: 'anos de mercado' },
   { value: 800, prefix: '+', suffix: '', label: 'projetos entregues' },
   { value: 120, prefix: 'R$ ', suffix: ' mi', label: 'em economia aos clientes' },
 ];
