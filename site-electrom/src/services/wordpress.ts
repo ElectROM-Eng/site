@@ -161,6 +161,14 @@ export interface Certificate {
   };
 }
 
+export interface Category {
+  id: number;
+  name: string;
+  slug: string;
+  parent: number;
+  count: number;
+}
+
 export const wordpressService = {
   // Testar conexão com a API
   async testConnection(): Promise<boolean> {
@@ -170,6 +178,35 @@ export const wordpressService = {
     } catch (error) {
       console.error('Erro ao testar conexão:', error);
       return false;
+    }
+  },
+
+  // Buscar todas as categorias (para encontrar IDs)
+  async getCategories(): Promise<Category[]> {
+    try {
+      const response = await api.get('/categories', {
+        params: {
+          per_page: 100,
+          hide_empty: false
+        }
+      });
+      console.log('Categorias encontradas:', response.data);
+      return response.data;
+    } catch (error) {
+      console.error('Erro ao buscar categorias:', error);
+      return [];
+    }
+  },
+
+  // Buscar ID de categoria por slug
+  async getCategoryIdBySlug(slug: string): Promise<number | null> {
+    try {
+      const categories = await this.getCategories();
+      const category = categories.find(cat => cat.slug === slug);
+      return category ? category.id : null;
+    } catch (error) {
+      console.error(`Erro ao buscar categoria ${slug}:`, error);
+      return null;
     }
   },
 
@@ -186,6 +223,66 @@ export const wordpressService = {
       return response.data;
     } catch (error) {
       console.error('Erro ao buscar posts:', error);
+      return [];
+    }
+  },
+
+  // Buscar posts por categoria (para distinguir blog de cases)
+  async getPostsByCategory(categorySlug: string, page = 1, perPage = 10): Promise<Post[]> {
+    try {
+      const response = await api.get('/posts', {
+        params: {
+          page,
+          per_page: perPage,
+          categories: categorySlug,
+          _embed: true
+        }
+      });
+      return response.data;
+    } catch (error) {
+      console.error(`Erro ao buscar posts da categoria ${categorySlug}:`, error);
+      return [];
+    }
+  },
+
+  // Buscar apenas posts do blog (excluindo cases)
+  async getBlogPosts(page = 1, perPage = 10): Promise<Post[]> {
+    try {
+      // Buscar ID da categoria "cases" dinamicamente
+      const casesId = await this.getCategoryIdBySlug('cases');
+      
+      const response = await api.get('/posts', {
+        params: {
+          page,
+          per_page: perPage,
+          categories_exclude: casesId || '3', // Excluir posts da categoria "cases"
+          _embed: true
+        }
+      });
+      return response.data;
+    } catch (error) {
+      console.error('Erro ao buscar posts do blog:', error);
+      return [];
+    }
+  },
+
+  // Buscar apenas cases
+  async getCasePosts(page = 1, perPage = 10): Promise<Post[]> {
+    try {
+      // Buscar ID da categoria "cases" dinamicamente
+      const casesId = await this.getCategoryIdBySlug('cases');
+      
+      const response = await api.get('/posts', {
+        params: {
+          page,
+          per_page: perPage,
+          categories: casesId || '3', // Incluir apenas posts da categoria "cases"
+          _embed: true
+        }
+      });
+      return response.data;
+    } catch (error) {
+      console.error('Erro ao buscar cases:', error);
       return [];
     }
   },

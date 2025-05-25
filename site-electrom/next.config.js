@@ -6,21 +6,11 @@ const nextConfig = {
     ignoreDuringBuilds: true
   },
   images: {
-    domains: ['localhost', 'electrom.eng.br', 'www.electrom.eng.br']
-  },
-  async redirects() {
-    return [
-      {
-        source: '/:path*',
-        has: [
-          {
-            type: 'host',
-            value: 'www.electrom.eng.br'
-          }
-        ],
-        destination: 'https://electrom.eng.br/:path*',
-        permanent: true
-      }
+    domains: [
+      'localhost',
+      'electrom.eng.br',
+      'www.electrom.eng.br',
+      'wp.electrom.eng.br'
     ]
   },
   async headers() {
