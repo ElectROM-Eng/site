@@ -5,7 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 const Navbar = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  // const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
@@ -18,15 +18,16 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const menuItems = [
-    { label: 'Home', href: '/' },
-    { label: 'Sobre', href: '/sobre' },
-    { label: 'Soluções', href: '/solucoes' },
-    { label: 'Cases', href: '/cases' },
-    { label: 'Sustentabilidade', href: '/sustentabilidade' },
-    { label: 'Blog', href: '/blog' },
-    { label: 'Contato', href: '/contato' },
-  ];
+  // Comentado para landing page - será reativado posteriormente
+  // const menuItems = [
+  //   { label: 'Home', href: '/' },
+  //   { label: 'Sobre', href: '/sobre' },
+  //   { label: 'Soluções', href: '/solucoes' },
+  //   { label: 'Cases', href: '/cases' },
+  //   { label: 'Sustentabilidade', href: '/sustentabilidade' },
+  //   { label: 'Blog', href: '/blog' },
+  //   { label: 'Contato', href: '/contato' },
+  // ];
 
   return (
     <nav 
@@ -37,7 +38,7 @@ const Navbar = () => {
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between h-16">
+        <div className="flex justify-center h-16">
           <div className="flex items-center">
             <Link href="/" className="flex-shrink-0 flex items-center">
               <Image
@@ -51,8 +52,8 @@ const Navbar = () => {
             </Link>
           </div>
 
-          {/* Desktop Menu */}
-          <div className="hidden md:flex items-center space-x-8">
+          {/* Desktop Menu - Comentado para landing page */}
+          {/* <div className="hidden md:flex items-center space-x-8">
             {menuItems.map((item) => (
               <Link
                 key={item.href}
@@ -66,10 +67,10 @@ const Navbar = () => {
                 {item.label}
               </Link>
             ))}
-          </div>
+          </div> */}
 
-          {/* Mobile menu button */}
-          <div className="md:hidden flex items-center">
+          {/* Mobile menu button - Comentado para landing page */}
+          {/* <div className="md:hidden flex items-center">
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               className={`inline-flex items-center justify-center p-2 rounded-md focus:outline-none transition-colors duration-300 ${
@@ -111,12 +112,12 @@ const Navbar = () => {
                 </svg>
               )}
             </button>
-          </div>
+          </div> */}
         </div>
       </div>
 
-      {/* Mobile Menu */}
-      {isMenuOpen && (
+      {/* Mobile Menu - Comentado para landing page */}
+      {/* {isMenuOpen && (
         <div className={`md:hidden transition-all duration-300 ${
           isScrolled ? 'bg-white' : 'bg-brand-petrol/95 backdrop-blur-sm'
         }`}>
@@ -137,7 +138,7 @@ const Navbar = () => {
             ))}
           </div>
         </div>
-      )}
+      )} */}
     </nav>
   );
 };
