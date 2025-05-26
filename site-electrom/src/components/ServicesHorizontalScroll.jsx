@@ -23,10 +23,11 @@ const services = [
     id: 2,
     title: 'Energias Renováveis',
     description:
-      'Sistemas completos de energia limpa e sustentável para autonomia energética e impacto ambiental positivo.',
+      'Sistemas completos de energia limpa e sustentável para autonomia energética e redução do impacto ambiental.',
     features: [
       'Fotovoltaica',
       'Eólica',
+      'Biomassa',
       'Aquecimento Solar',
       'Estações de Carregamento EV'
     ],
@@ -40,17 +41,16 @@ const services = [
     id: 3,
     title: 'Instalação de Média e Baixa Tensão',
     description:
-      'Projetos elétricos industriais e comerciais com máxima segurança e conformidade às normas técnicas.',
+      'Projetos elétricos com máxima segurança e conformidade às normas técnicas.',
     features: [
       'Ramal de entrada',
       'Cabine Primária',
       'Centro de Medição',
       'SPDA',
       'HVAC',
-      'CFTV',
+      'Automação',
       'Vistorias',
-      'Manutenção',
-      'Automação'
+      'Manutenção em Geral',      
     ],
     testimonial:
       'Instalação elétrica impecável. Segurança e eficiência que nossa indústria precisava.',
@@ -79,7 +79,7 @@ const services = [
     id: 5,
     title: 'Gerenciamento de Obras',
     description:
-      'Coordenação completa de projetos elétricos e energéticos, garantindo prazo, qualidade e segurança em todas as etapas.',
+      'Coordenação completa de projetos em geral, garantindo prazo, qualidade e segurança em todas as etapas.',
     features: [
       'Gestão de contrato',
       'Gestão de equipe',

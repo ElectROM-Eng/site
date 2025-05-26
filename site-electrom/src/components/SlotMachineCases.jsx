@@ -255,7 +255,7 @@ export default function SlotMachineCases() {
           whileHover={{ scale: 1.05, boxShadow: '0 4px 24px 0 #7AA2E4aa' }}
           whileTap={{ scale: 0.97 }}
         >
-          Ver Todos os Cases de Sucesso
+          Veja Outros os Cases de Sucesso
           <svg
             className="ml-2 w-5 h-5"
             fill="none"

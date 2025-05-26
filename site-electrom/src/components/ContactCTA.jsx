@@ -96,8 +96,8 @@ const ContactCTA = () => {
           </div>
 
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight">
-            Vamos tirar seu projeto
-            <span className="block text-brand-blue">do papel?</span>
+            Vamos tirar seu projeto{' '}
+            <span className="text-brand-blue">do papel?</span>
           </h2>
 
           <p className="text-lg md:text-xl text-white/90 max-w-3xl mx-auto leading-relaxed mb-4">
