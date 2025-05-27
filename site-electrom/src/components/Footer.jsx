@@ -98,9 +98,16 @@ export default function Footer() {
               transition={{ duration: 0.6 }}
             >
               <div className="mb-6">
-                <h3 className="text-2xl font-bold text-brand-blue mb-2">
-                  Electrom
-                </h3>
+                <div className="mb-4">
+                  <Image
+                    src="/ElectROM - Horizontal.png"
+                    alt="Electrom Logo"
+                    width={200}
+                    height={50}
+                    className="h-12 w-auto"
+                    priority
+                  />
+                </div>
                 <p className="text-sm text-white/70 uppercase tracking-wide">
                   Engenharia das Energias
                 </p>
@@ -173,10 +180,10 @@ export default function Footer() {
                     />
                   </svg>
                   <a
-                    href="tel:+5548999999999"
+                    href="tel:+5511999620930"
                     className="text-sm text-white/80 hover:text-brand-blue transition-colors"
                   >
-                    (48) 99999-9999
+                    (11) 99962-0930
                   </a>
                 </div>
               </div>
