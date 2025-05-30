@@ -2,6 +2,7 @@
 import React, { useRef } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import Footer from './Footer'
+import Image from 'next/image'
 
 const services = [
   {
@@ -15,9 +16,11 @@ const services = [
       'Controle de emissões'
     ],
     testimonial:
-      'A Electrom transformou nossa gestão energética. Reduzimos 40% do consumo e melhoramos nosso controle de emissões.',
+      'A gente sabia que estava desperdiçando energia, mas não fazia ideia do quanto. A ElectROM fez uma auditoria completa e reduziu nosso consumo em quase metade. Hoje, temos controle total da operação.',
+    testimonialAuthor: 'Carlos Mendes, gerente de operações da LactoSul',
+    imageUrl: '/services/engenharia-energia.png',
     bgGradient: 'from-green-600/40 via-green-700/30 to-brand-petrol',
-    cta: 'Solicitar Auditoria',
+    cta: 'Quero uma análise energética',
     icon: '⚡'
   },
   {
@@ -33,9 +36,11 @@ const services = [
       'Estações de Carregamento EV'
     ],
     testimonial:
-      'Com o sistema de energias renováveis da Electrom, alcançamos 95% de autonomia energética. Investimento que se paga sozinho.',
+      'Moramos numa chácara afastada e o sistema da ElectROM nos deu 100% de autonomia. Hoje, a conta de luz é simbólica e ainda conseguimos alimentar a estação de carregamento do carro elétrico.',
+    testimonialAuthor: 'Adriana Silva, produtora rural em Ibiúna (SP)',
+    imageUrl: '/services/energia-renovavel.png',
     bgGradient: 'from-yellow-600/40 via-yellow-700/30 to-brand-petrol',
-    cta: 'Explorar Soluções',
+    cta: 'Simular Autonomia Energética',
     icon: '🌱'
   },
   {
@@ -54,9 +59,11 @@ const services = [
       'Manutenção em Geral'
     ],
     testimonial:
-      'Instalação elétrica impecável. Segurança e eficiência que nossa indústria precisava.',
+      'Tínhamos problemas recorrentes de queda de energia e instabilidade no sistema. Após a instalação da ElectROM, nossa rede está robusta, segura e dentro de todas as normas técnicas.',
+    testimonialAuthor: 'Rogério Farias, diretor da TecnoAlfa Industrial',
+    imageUrl: '/services/media-alta-tensao.png',
     bgGradient: 'from-purple-600/40 via-purple-700/30 to-brand-petrol',
-    cta: 'Agendar Diagnóstico',
+    cta: 'Falar com engenheiro técnico',
     icon: '⚡'
   },
   {
@@ -71,9 +78,11 @@ const services = [
       'Créditos de Carbono'
     ],
     testimonial:
-      'A consultoria da Electrom identificou oportunidades que resultaram em 30% de economia na nossa conta de energia.',
+      'A migração para o Mercado Livre de Energia parecia impossível. Com a consultoria da ElectROM, entendemos todo o processo e reduzimos a conta da fábrica em 27% já no primeiro trimestre.',
+    testimonialAuthor: 'Luciana Gama, CFO da BioQuímica BR',
+    imageUrl: '/services/consultoria-energia.png',
     bgGradient: 'from-indigo-600/40 via-indigo-700/30 to-brand-petrol',
-    cta: 'Solicitar Consultoria',
+    cta: 'Ver oportunidades no Mercado Livre',
     icon: '📊'
   },
   {
@@ -88,9 +97,10 @@ const services = [
       'Segurança patrimonial e pessoal'
     ],
     testimonial:
-      'Projeto executado no prazo e com qualidade excepcional. A equipe da Electrom é altamente profissional.',
+      'A ElectROM assumiu a obra da nova planta quando tudo estava atrasado. Em 6 meses entregaram tudo, com padrão técnico de altíssimo nível. Nunca mais contratamos ninguém sem gestão integrada.',
+    testimonialAuthor: 'Marcos Teixeira, CEO do Grupo Planterra',
+    imageUrl: '/services/obras.jpg',
     bgGradient: 'from-blue-600/40 via-blue-700/30 to-brand-petrol',
-    cta: 'Solicitar Orçamento',
     icon: '🏗️'
   }
 ]
@@ -161,36 +171,48 @@ export default function ServicesHorizontalScroll() {
                         </li>
                       ))}
                     </ul>
-
-                    <button className="bg-brand-blue hover:bg-brand-blue/90 text-white font-semibold px-6 py-3 rounded-lg shadow-lg transition-all text-base inline-flex items-center mt-4">
-                      {service.cta}
-                      <svg
-                        className="ml-2 w-4 h-4"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth="2"
-                          d="M17 8l4 4m0 0l-4 4m4-4H3"
-                        />
-                      </svg>
-                    </button>
+                    {service.cta && (
+                      <button className="bg-brand-blue hover:bg-brand-blue/90 text-white font-semibold px-6 py-3 rounded-lg shadow-lg transition-all text-base inline-flex items-center mt-4">
+                        {service.cta}
+                        <svg
+                          className="ml-2 w-4 h-4"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2"
+                            d="M17 8l4 4m0 0l-4 4m4-4H3"
+                          />
+                        </svg>
+                      </button>
+                    )}
                   </div>
 
                   {/* Right Column */}
                   <div className="space-y-6">
-                    {/* Image Placeholder */}
-                    <div className="relative aspect-video bg-white/10 backdrop-blur-sm rounded-xl border border-white/20 overflow-hidden shadow-2xl">
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <div className="text-5xl opacity-40">
-                          {service.icon}
+                    {/* Image Container */}
+                    <div className="relative aspect-video bg-white/10 backdrop-blur-sm rounded-xl border border-white/20 overflow-hidden shadow-2xl group">
+                      {service.imageUrl ? (
+                        <Image
+                          src={service.imageUrl}
+                          alt={service.title}
+                          fill
+                          className="object-cover group-hover:scale-105 transition-transform duration-300"
+                          priority
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        />
+                      ) : (
+                        <div className="absolute inset-0 flex items-center justify-center">
+                          <div className="text-5xl opacity-40">
+                            {service.icon || '🖼️'}
+                          </div>
                         </div>
-                      </div>
+                      )}
                       <div className="absolute bottom-3 right-3 bg-black/50 text-white px-2 py-1 rounded text-xs">
-                        Imagem do projeto
+                        Projeto Electrom
                       </div>
                     </div>
 
@@ -200,7 +222,7 @@ export default function ServicesHorizontalScroll() {
                         "{service.testimonial}"
                       </blockquote>
                       <div className="mt-3 text-brand-blue font-semibold text-sm">
-                        — Cliente Electrom
+                        — {service.testimonialAuthor || 'Cliente Satisfeito'}
                       </div>
                     </div>
                   </div>
