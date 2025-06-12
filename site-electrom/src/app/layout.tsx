@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
+import { Suspense } from 'react';
 import "../styles/globals.css";
 import "../styles/carousel.css";
 import Navbar from "@/components/Navbar";
+import FacebookPixel from "@/components/FacebookPixel";
 // import Footer from "@/components/Footer"; // Comentado para landing page - Footer será incluído na seção de serviços
 
 export const metadata: Metadata = {
@@ -20,6 +22,9 @@ export default function RootLayout({
   return (
     <html lang="pt-BR">
       <body className="font-primary">
+        <Suspense>
+          <FacebookPixel />
+        </Suspense>
         <Navbar />
         <main className="pt-16">
           {children}
