@@ -1,7 +1,6 @@
 'use client'
 import React, { useRef } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
-import Footer from './Footer'
 import Image from 'next/image'
 
 const services = [
@@ -246,8 +245,6 @@ export default function ServicesHorizontalScroll() {
           </motion.div>
         </div>
       </section>
-
-      <Footer />
     </>
   )
 }

@@ -51,19 +51,19 @@ export default function HeroSection() {
           <motion.a
             whileHover={{ scale: 1.07, boxShadow: '0 4px 24px 0 #7AA2E4aa' }}
             whileTap={{ scale: 0.97 }}
-            href="#diagnostico"
+            href="mailto:comercial@electrom.eng.br?subject=Solicitação de Diagnóstico Energético&body=Olá, gostaria de solicitar um diagnóstico energético para minha empresa."
             className="bg-brand-blue hover:bg-brand-blue/90 text-white font-semibold px-8 py-4 rounded-lg shadow transition-all text-lg text-center"
           >
             Solicitar Diagnóstico Energético
           </motion.a>
-          <motion.a
+          {/*<motion.a
             whileHover={{ scale: 1.07, boxShadow: '0 4px 24px 0 #fff2' }}
             whileTap={{ scale: 0.97 }}
             href="#portfolio"
             className="bg-white/10 hover:bg-white/20 text-white font-semibold px-8 py-4 rounded-lg border border-white/20 transition-all text-lg text-center"
           >
             Ver Portfólio
-          </motion.a>
+          </motion.a>*/}
         </div>
       </motion.div>
     </section>

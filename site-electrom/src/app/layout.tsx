@@ -4,7 +4,7 @@ import "../styles/globals.css";
 import "../styles/carousel.css";
 import Navbar from "@/components/Navbar";
 import FacebookPixel from "@/components/FacebookPixel";
-// import Footer from "@/components/Footer"; // Comentado para landing page - Footer será incluído na seção de serviços
+import Footer from "@/components/Footer"; // Comentado para landing page - Footer será incluído na seção de serviços
 
 export const metadata: Metadata = {
   title: "Electrom Engenharia - Engenharia das Energias",
@@ -29,7 +29,7 @@ export default function RootLayout({
         <main className="pt-16">
           {children}
         </main>
-        {/* <Footer /> */} {/* Comentado para landing page - Footer será incluído na seção de serviços */}
+        <Footer />
       </body>
     </html>
   );

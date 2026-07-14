@@ -67,11 +67,7 @@ export default function Footer() {
     }
   ]
 
-  const certifications = [
-    { name: 'CREA-SC', logo: '/certifications/crea.png' },
-    { name: 'ISO 9001', logo: '/certifications/iso.png' },
-    { name: 'ABNT', logo: '/certifications/abnt.png' }
-  ]
+  const certifications = [{ name: 'CREA-SP', logo: '/certifications/crea.png' }]
 
   return (
     <footer className="bg-brand-petrol text-white relative overflow-hidden">
@@ -158,10 +154,10 @@ export default function Footer() {
                     />
                   </svg>
                   <a
-                    href="mailto:contato@electrom.com.br"
+                    href="mailto:comercial@electrom.eng.br"
                     className="text-sm text-white/80 hover:text-brand-blue transition-colors"
                   >
-                    contato@electrom.com.br
+                    comercial@electrom.eng.br
                   </a>
                 </div>
 
@@ -227,7 +223,7 @@ export default function Footer() {
 
               <div className="space-y-4">
                 <a
-                  href="https://wa.me/5548999999999"
+                  href="https://wa.me/5511999620930"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-3 p-3 bg-white/10 rounded-lg hover:bg-brand-blue transition-all duration-300 group"
@@ -245,7 +241,7 @@ export default function Footer() {
                 </a>
 
                 <a
-                  href="mailto:contato@electrom.com.br"
+                  href="mailto:comercial@electrom.eng.br"
                   className="flex items-center gap-3 p-3 bg-white/10 rounded-lg hover:bg-brand-blue transition-all duration-300 group"
                 >
                   <svg
