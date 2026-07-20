@@ -1,17 +1,24 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  eslint: {
-    // Ignorar erros de ESLint durante o build
-    ignoreDuringBuilds: true
-  },
   images: {
-    domains: [
-      'localhost',
-      'electrom.eng.br',
-      'www.electrom.eng.br',
-      'wp.electrom.eng.br'
-    ]
+    remotePatterns: [
+      {
+        hostname: 'localhost',
+      },
+      {
+        protocol: 'https',
+        hostname: 'electrom.eng.br',
+      },
+      {
+        protocol: 'https',
+        hostname: 'www.electrom.eng.br',
+      },
+      {
+        protocol: 'https',
+        hostname: 'wp.electrom.eng.br',
+      },
+    ],
   },
   async headers() {
     return [

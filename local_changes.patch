@@ -1,0 +1,163 @@
+﻿diff --git a/site-electrom/README.md b/site-electrom/README.md
+index e215bc4..533933e 100644
+--- a/site-electrom/README.md
++++ b/site-electrom/README.md
+@@ -19,18 +19,3 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
+ You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+ 
+ This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+-
+-## Learn More
+-
+-To learn more about Next.js, take a look at the following resources:
+-
+-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+-
+-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+-
+-## Deploy on Vercel
+-
+-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+-
+-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+diff --git a/site-electrom/src/app/layout.tsx b/site-electrom/src/app/layout.tsx
+index cd7ddcd..a607780 100644
+--- a/site-electrom/src/app/layout.tsx
++++ b/site-electrom/src/app/layout.tsx
+@@ -4,7 +4,7 @@ import "../styles/globals.css";
+ import "../styles/carousel.css";
+ import Navbar from "@/components/Navbar";
+ import FacebookPixel from "@/components/FacebookPixel";
+-// import Footer from "@/components/Footer"; // Comentado para landing page - Footer ser├í inclu├¡do na se├º├úo de servi├ºos
++import Footer from "@/components/Footer"; // Comentado para landing page - Footer ser├í inclu├¡do na se├º├úo de servi├ºos
+ 
+ export const metadata: Metadata = {
+   title: "Electrom Engenharia - Engenharia das Energias",
+@@ -29,7 +29,7 @@ export default function RootLayout({
+         <main className="pt-16">
+           {children}
+         </main>
+-        {/* <Footer /> */} {/* Comentado para landing page - Footer ser├í inclu├¡do na se├º├úo de servi├ºos */}
++        <Footer />
+       </body>
+     </html>
+   );
+diff --git a/site-electrom/src/app/page.tsx b/site-electrom/src/app/page.tsx
+index 9993731..1d72121 100644
+--- a/site-electrom/src/app/page.tsx
++++ b/site-electrom/src/app/page.tsx
+@@ -5,7 +5,7 @@ import ServicesHorizontalScroll from "../components/ServicesHorizontalScroll";
+ // import TrustBar from "../components/TrustBar";
+ // import AboutStrip from "../components/AboutStrip";
+ // import ImpactNumbers from "../components/ImpactNumbers";
+-// import PartnersCarousel from "../components/PartnersCarousel";
++import PartnersCarousel from "../components/PartnersCarousel";
+ // import BlogPreview from "../components/BlogPreview";
+ // import ContactCTA from "../components/ContactCTA";
+ 
+@@ -19,7 +19,7 @@ export default function Home() {
+       {/* <TrustBar /> */}
+       {/* <AboutStrip /> */}
+       {/* <ImpactNumbers /> */}
+-      {/* <PartnersCarousel /> */}
++      <PartnersCarousel />
+       {/* <BlogPreview /> */}
+       {/* <ContactCTA /> */}
+     </main>
+diff --git a/site-electrom/src/components/Footer.jsx b/site-electrom/src/components/Footer.jsx
+index bea5c28..e850a7b 100644
+--- a/site-electrom/src/components/Footer.jsx
++++ b/site-electrom/src/components/Footer.jsx
+@@ -67,11 +67,7 @@ export default function Footer() {
+     }
+   ]
+ 
+-  const certifications = [
+-    { name: 'CREA-SC', logo: '/certifications/crea.png' },
+-    { name: 'ISO 9001', logo: '/certifications/iso.png' },
+-    { name: 'ABNT', logo: '/certifications/abnt.png' }
+-  ]
++  const certifications = [{ name: 'CREA-SP', logo: '/certifications/crea.png' }]
+ 
+   return (
+     <footer className="bg-brand-petrol text-white relative overflow-hidden">
+@@ -158,10 +154,10 @@ export default function Footer() {
+                     />
+                   </svg>
+                   <a
+-                    href="mailto:contato@electrom.com.br"
++                    href="mailto:comercial@electrom.eng.br"
+                     className="text-sm text-white/80 hover:text-brand-blue transition-colors"
+                   >
+-                    contato@electrom.com.br
++                    comercial@electrom.eng.br
+                   </a>
+                 </div>
+ 
+@@ -227,7 +223,7 @@ export default function Footer() {
+ 
+               <div className="space-y-4">
+                 <a
+-                  href="https://wa.me/5548999999999"
++                  href="https://wa.me/5511999620930"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   className="flex items-center gap-3 p-3 bg-white/10 rounded-lg hover:bg-brand-blue transition-all duration-300 group"
+@@ -245,7 +241,7 @@ export default function Footer() {
+                 </a>
+ 
+                 <a
+-                  href="mailto:contato@electrom.com.br"
++                  href="mailto:comercial@electrom.eng.br"
+                   className="flex items-center gap-3 p-3 bg-white/10 rounded-lg hover:bg-brand-blue transition-all duration-300 group"
+                 >
+                   <svg
+diff --git a/site-electrom/src/components/HeroSection.jsx b/site-electrom/src/components/HeroSection.jsx
+index b71b6cb..864f175 100644
+--- a/site-electrom/src/components/HeroSection.jsx
++++ b/site-electrom/src/components/HeroSection.jsx
+@@ -51,19 +51,19 @@ export default function HeroSection() {
+           <motion.a
+             whileHover={{ scale: 1.07, boxShadow: '0 4px 24px 0 #7AA2E4aa' }}
+             whileTap={{ scale: 0.97 }}
+-            href="#diagnostico"
++            href="mailto:comercial@electrom.eng.br?subject=Solicita├º├úo de Diagn├│stico Energ├®tico&body=Ol├í, gostaria de solicitar um diagn├│stico energ├®tico para minha empresa."
+             className="bg-brand-blue hover:bg-brand-blue/90 text-white font-semibold px-8 py-4 rounded-lg shadow transition-all text-lg text-center"
+           >
+             Solicitar Diagn├│stico Energ├®tico
+           </motion.a>
+-          <motion.a
++          {/*<motion.a
+             whileHover={{ scale: 1.07, boxShadow: '0 4px 24px 0 #fff2' }}
+             whileTap={{ scale: 0.97 }}
+             href="#portfolio"
+             className="bg-white/10 hover:bg-white/20 text-white font-semibold px-8 py-4 rounded-lg border border-white/20 transition-all text-lg text-center"
+           >
+             Ver Portf├│lio
+-          </motion.a>
++          </motion.a>*/}
+         </div>
+       </motion.div>
+     </section>
+diff --git a/site-electrom/src/components/ServicesHorizontalScroll.jsx b/site-electrom/src/components/ServicesHorizontalScroll.jsx
+index 129a740..c0cc8b7 100644
+--- a/site-electrom/src/components/ServicesHorizontalScroll.jsx
++++ b/site-electrom/src/components/ServicesHorizontalScroll.jsx
+@@ -1,7 +1,6 @@
+ 'use client'
+ import React, { useRef } from 'react'
+ import { motion, useScroll, useTransform } from 'framer-motion'
+-import Footer from './Footer'
+ import Image from 'next/image'
+ 
+ const services = [
+@@ -246,8 +245,6 @@ export default function ServicesHorizontalScroll() {
+           </motion.div>
+         </div>
+       </section>
+-
+-      <Footer />
+     </>
+   )
+ }
